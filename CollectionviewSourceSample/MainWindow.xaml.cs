@@ -17,6 +17,7 @@ using System.Reflection;
 
 namespace CollectionviewSourceSample
 {
+    //TODO 改造成MVVM模式
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

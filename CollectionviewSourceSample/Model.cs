@@ -9,8 +9,8 @@ namespace CollectionviewSourceSample
 {
     public class Model
     {
-
         private ObservableCollection<ViewItem> items;
+
         public ObservableCollection<ViewItem> Items
         {
             get
@@ -28,6 +28,7 @@ namespace CollectionviewSourceSample
                        select prop.Name;
             }
         }
+
         public IEnumerable<string> AvailableDevelopment
         {
             get
@@ -36,6 +37,7 @@ namespace CollectionviewSourceSample
                         select developer.Developer).Distinct();
             }
         }
+
         private ObservableCollection<ViewItem> LoadItems()
         {
             ObservableCollection<ViewItem> items = new ObservableCollection<ViewItem>();
@@ -53,6 +55,10 @@ namespace CollectionviewSourceSample
             return items;
         }
     }
+
+    /// <summary>
+    /// 每一项元素数据
+    /// </summary>
     public class ViewItem
     {
         public string Id { get; set; }
