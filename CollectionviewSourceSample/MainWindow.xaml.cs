@@ -22,12 +22,12 @@ namespace CollectionviewSourceSample
     /// </summary>
     public partial class MainWindow : Window
     {
-
         private Model DataModel
         {
             get;
             set;
         }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace CollectionviewSourceSample
             this.lvItems.DataContext = this.Source;
         }
 
-        ICollectionView Source { get; set; }
+        private ICollectionView Source { get; set; }
 
         public IEnumerable<string> DeveloperList
         {
@@ -52,7 +52,7 @@ namespace CollectionviewSourceSample
         private void ListView_Click(object sender, RoutedEventArgs e)
         {
             GridViewColumnHeader currentHeader = e.OriginalSource as GridViewColumnHeader;
-            if(currentHeader != null && currentHeader.Role != GridViewColumnHeaderRole.Padding)
+            if (currentHeader != null && currentHeader.Role != GridViewColumnHeaderRole.Padding)
             {
                 using (this.Source.DeferRefresh())
                 {
@@ -62,7 +62,6 @@ namespace CollectionviewSourceSample
                         SortDescription currentSortDescription = this.Source.SortDescriptions.First(lamda);
                         ListSortDirection sortDescription = currentSortDescription.Direction == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
 
-
                         currentHeader.Column.HeaderTemplate = currentSortDescription.Direction == ListSortDirection.Ascending ?
                             this.Resources["HeaderTemplateArrowDown"] as DataTemplate : this.Resources["HeaderTemplateArrowUp"] as DataTemplate;
 
@@ -71,12 +70,8 @@ namespace CollectionviewSourceSample
                     }
                     else
                         this.Source.SortDescriptions.Add(new SortDescription(currentHeader.Column.Header.ToString(), ListSortDirection.Ascending));
-                }                 
-               
-                   
+                }
             }
-
-            
         }
 
         private void btnFilter_Click(object sender, RoutedEventArgs e)
@@ -89,8 +84,7 @@ namespace CollectionviewSourceSample
                 PropertyInfo info = item.GetType().GetProperty(cmbProperty.Text);
                 if (info == null) return false;
 
-                return  info.GetValue(vitem,null).ToString().Contains(txtFilter.Text);
-
+                return info.GetValue(vitem, null).ToString().Contains(txtFilter.Text);
             };
         }
 
@@ -106,7 +100,6 @@ namespace CollectionviewSourceSample
             PropertyInfo pinfo = typeof(ViewItem).GetProperty(cmbGroups.Text);
             if (pinfo != null)
                 this.Source.GroupDescriptions.Add(new PropertyGroupDescription(pinfo.Name));
-
         }
 
         private void btnClearGr_Click(object sender, RoutedEventArgs e)
@@ -123,26 +116,37 @@ namespace CollectionviewSourceSample
                 case "0":
                     this.Source.MoveCurrentToFirst();
                     break;
+
                 case "1":
                     this.Source.MoveCurrentToPrevious();
                     break;
+
                 case "2":
                     this.Source.MoveCurrentToNext();
                     break;
+
                 case "3":
                     this.Source.MoveCurrentToLast();
                     break;
             }
-            
         }
 
         private void btnEvaluate_Click(object sender, RoutedEventArgs e)
+        {
+            ShowSelectedInto();
+        }
+
+        private void ShowSelectedInto()
         {
             ViewItem item = this.lvItems.SelectedItem as ViewItem;
 
             string msg = string.Format("Hello {0}, Developer in {1} with Salary {2}", item.Name, item.Developer, item.Salary);
             MessageBox.Show(msg);
         }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ShowSelectedInto();
+        }
     }
-   
 }
