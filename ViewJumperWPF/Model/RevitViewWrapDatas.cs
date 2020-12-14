@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewJumperWPF.Extensions;
 
 namespace ViewJumperWPF.Model
 {
@@ -28,16 +29,9 @@ namespace ViewJumperWPF.Model
             {
                 var observableCollection = this.GetViewDatas(_doc, ViewType.EngineeringPlan);
 
-                //var newCollection = this.GetViewDatas(_doc, ViewType.FloorPlan);
-
-                //foreach (var e in observableCollection)
-                //{
-                //    var tmp = newCollection.FirstOrDefault(x => x.Id == e.Id);
-                //    if (tmp == null)
-                //    {
-                //        newCollection.Add(e);
-                //    }
-                //}
+                observableCollection.AddRange(this.GetViewDatas(_doc, ViewType.FloorPlan));
+                observableCollection.AddRange(this.GetViewDatas(_doc, ViewType.ThreeD));
+                observableCollection.AddRange(this.GetViewDatas(_doc, ViewType.Elevation));
 
                 this._views = this._views ?? observableCollection;
                 return this._views;

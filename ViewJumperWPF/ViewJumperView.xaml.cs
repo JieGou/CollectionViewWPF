@@ -101,15 +101,7 @@ namespace ViewJumperWPF
         /// <param name="e"></param>
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var item = this.lvItems.SelectedItem as RevitViewWrap;
-
-            var view = item?.View;
-            if (view != null)
-            {
-                _uidoc.ActiveView = view;
-
-                this.Close();
-            }
+            JumpView();
         }
 
         private void JumpView()

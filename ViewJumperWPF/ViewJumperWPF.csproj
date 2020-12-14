@@ -68,6 +68,7 @@
     </Page>
     <Compile Include="CmdViewJump.cs" />
     <Compile Include="Convert\BooleanVisiblityConverter.cs" />
+    <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="ViewJumperView.xaml.cs">
       <DependentUpon>ViewJumperView.xaml</DependentUpon>
       <SubType>Code</SubType>
