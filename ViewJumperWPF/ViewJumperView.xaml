@@ -67,13 +67,25 @@
                                     <ControlTemplate TargetType="{x:Type GroupItem}">
                                         <!--在选择多种时 设置边框效果更好 BorderThickness="0.5,0.5,0.5,1"-->
                                         <Expander IsExpanded="True" BorderBrush="#FF002255" BorderThickness="0">
-                                            <Expander.Header>
+                                            <!--<Expander.Header>
                                                 <DockPanel>
-                                                    <!--该组的名称-->
+                                                    -->
+                                            <!--该组的名称-->
+                                            <!--
                                                     <TextBlock FontWeight="Bold" Text="{Binding Path=Name}" Margin="5,0,0,0" Width="100" />
-                                                    <!--该组的元素数量-->
+                                                    -->
+                                            <!--该组的元素数量-->
+                                            <!--
                                                     <TextBlock FontWeight="Bold" Text="{Binding Path=ItemCount}" />
                                                 </DockPanel>
+                                            </Expander.Header>-->
+                                            <Expander.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="Gray"  VerticalAlignment="Bottom" />
+                                                    <TextBlock Text="{Binding ItemCount}"  Foreground="Green" FontWeight="Bold" FontStyle="Italic"
+                                                               Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                                    <!--<TextBlock Text=" item(s)" FontSize="22" Foreground="Silver" FontStyle="Italic" VerticalAlignment="Bottom" />-->
+                                                </StackPanel>
                                             </Expander.Header>
                                             <Expander.Content>
                                                 <ItemsPresenter />
@@ -90,7 +102,7 @@
 
                 <GridView AllowsColumnReorder="True">
                     <GridViewColumn Header="视图名称" DisplayMemberBinding="{Binding ViewName}" />
-                    <GridViewColumn Header="视图类别" DisplayMemberBinding="{Binding ViewTypeName}" />
+                    <!--<GridViewColumn Header="视图类别" DisplayMemberBinding="{Binding ViewTypeName}" />-->
                 </GridView>
             </ListView.View>
         </ListView>
