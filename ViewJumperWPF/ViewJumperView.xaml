@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ViewJumperWPF"
         xmlns:convert="clr-namespace:ViewJumperWPF.Convert"
+        xmlns:controls="clr-namespace:ViewJumperWPF.Controls"
         mc:Ignorable="d"
         Title="结构视图跳转" WindowStartupLocation="CenterScreen" Width="280" Height="300" ShowInTaskbar="False">
 
@@ -48,10 +49,14 @@
     </Window.Resources>
     <Grid Margin="10" x:Name="grdMain">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <ListView Grid.Column="0"  ItemsSource="{Binding}" x:Name="lvItems"
+        <controls:FilterControl Height="25" Header="搜索视图" DockPanel.Dock="Top"
+                            TargetControl="{Binding ElementName=lvItems}"
+                            FilterTextBindingPath="ViewName" />
+        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding}" x:Name="lvItems"
                   GridViewColumnHeader.Click="ListView_Click"
 
                   IsSynchronizedWithCurrentItem="True">
@@ -99,13 +104,12 @@
                 </GroupStyle>
             </ListView.GroupStyle>
             <ListView.View>
-
                 <GridView AllowsColumnReorder="True">
                     <GridViewColumn Header="视图名称" DisplayMemberBinding="{Binding ViewName}" />
                     <!--<GridViewColumn Header="视图类别" DisplayMemberBinding="{Binding ViewTypeName}" />-->
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBlock Grid.Row="1" Text="双击或选中视图按Enter键跳转"  VerticalAlignment="Center" Foreground="Red" />
+        <TextBlock Grid.Row="2" Text="双击或选中视图按Enter键跳转"  VerticalAlignment="Center" Foreground="Red" />
     </Grid>
 </Window>

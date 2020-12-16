@@ -9,6 +9,8 @@ using Autodesk.Revit.UI;
 
 namespace ViewJumperWPF
 {
+    //TODO 添加历史 并且历史视图也添加group
+    //TODO 通过Filter来实现过滤想要的视图类型
     [Transaction(TransactionMode.Manual)]
     public class CmdViewJump : IExternalCommand
     {
